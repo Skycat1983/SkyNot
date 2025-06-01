@@ -1,0 +1,30 @@
+{
+  "manifest_version": 2,
+  "name": "SkyNot",
+  "version": "1.0",
+  "description": "SkyNot is a tool that blocks Google's AI content",
+  "homepage_url": "https://github.com/Skycat1983/SkyNot",
+  "developer": {
+    "name": "Skycat1983",
+    "url": "https://github.com/Skycat1983"
+  },
+
+  "icons": {
+    "48": "icons/logo_48.png",
+    "96": "icons/logo_white_96.png"
+  },
+  "permissions": ["activeTab", "tabs", "storage"],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["dist/scripts/content.js"],
+      "css": ["src/styles/content.css"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "icons/logo_white_small.png",
+    "default_title": "SkyNot",
+    "default_popup": "src/pages/popup/popup.html"
+  }
+}
