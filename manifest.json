@@ -17,7 +17,11 @@
 
   "content_scripts": [
     {
-      "matches": ["<all_urls>"],
+      "matches": [
+        "*://www.google.com/*",
+        "*://google.com/*",
+        "*://*.google.com/*"
+      ],
       "js": ["dist/scripts/content.js"],
       "css": ["src/styles/content.css"]
     }
@@ -25,6 +29,6 @@
   "browser_action": {
     "default_icon": "src/assets/icons/logo_white_96.png",
     "default_title": "SkyNot",
-    "default_popup": "src/pages/popup/popup.html"
+    "default_popup": "src/pages/popup.html"
   }
 }
