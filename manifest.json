@@ -10,8 +10,8 @@
   },
 
   "icons": {
-    "48": "icons/logo_48.png",
-    "96": "icons/logo_white_96.png"
+    "48": "src/assets/icons/logo_white_48.png",
+    "96": "src/assets/icons/logo_white_96.png"
   },
   "permissions": ["activeTab", "tabs", "storage"],
 
@@ -23,7 +23,7 @@
     }
   ],
   "browser_action": {
-    "default_icon": "icons/logo_white_small.png",
+    "default_icon": "src/assets/icons/logo_white_96.png",
     "default_title": "SkyNot",
     "default_popup": "src/pages/popup/popup.html"
   }
