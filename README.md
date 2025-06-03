@@ -1,4 +1,4 @@
-# SkyNot - Terminate AI Overviews
+# SkyNot - Terminate Google's AI Overviews
 
 ![SkyNot Logo](src/assets/screenshots/logo.png)
 
@@ -58,17 +58,6 @@ SkyNot automatically intercepts content being added to Google's 'AI Overview' co
    - Click "Load Temporary Add-on"
    - Select the `manifest.json` file from the project root
 
-## 🎭 Character Quotes
-
-SkyNot features quotes from iconic Terminator characters:
-
-- **T-800** - The legendary cyborg with classic one-liners
-- **Sarah Connor** - The fierce resistance leader
-- **Kyle Reese** - The time-traveling soldier
-- **John Connor** - The future leader of humanity
-- **Kate Brewster** - The veterinarian caught in the machine war
-- **Grace** - The enhanced super-soldier from the future
-
 ## 🔧 Technical Details
 
 ### Architecture
@@ -123,7 +112,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🎬 Disclaimer
 
 SkyNot is a parody extension created for entertainment purposes. All Terminator quotes and references are the property of their respective copyright holders. This extension is not affiliated with or endorsed by Google, Skydance Media, or any other entity associated with the Terminator franchise.
-
----
-
-**"I'll be back... to block more AI content."** - T-800 (probably)
