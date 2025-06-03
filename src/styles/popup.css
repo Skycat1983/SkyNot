@@ -4,23 +4,19 @@ body {
   /* padding: 20px; */
   font-family: system-ui, -apple-system, sans-serif;
   position: relative;
-  overflow: hidden; /* Important for cropping the img element */
+  overflow: hidden;
   padding: 0px;
   margin: 0px;
-
-  /* Removed background image to avoid conflicts with <img> element */
 }
 
 img {
-  width: 150px; /* Match body width to eliminate black padding */
-  height: 150px; /* Match body height */
+  width: 150px;
+  height: 150px;
   position: absolute;
   top: 0;
   left: 0;
-
-  /* CROPPING equal amounts from left and right */
-  object-fit: cover; /* Maintains aspect ratio, crops to fit */
-  object-position: center; /* Centers the image, cropping equally from sides */
+  object-fit: cover;
+  object-position: center;
 }
 
 /* Button Container */
@@ -29,9 +25,9 @@ img {
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 100%; /* fill entire width of the 150px pop-up */
-  padding: 10px 15px; /* 10px left/right gutter, and 15px bottom gutter */
-  box-sizing: border-box; /* ensure the 150px width includes that 10px padding on each side */
+  width: 100%;
+  padding: 10px 15px;
+  box-sizing: border-box;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,9 +35,9 @@ img {
 
 /* ── The Terminated Button ───────────────────────────────────────────────── */
 .terminated-button {
-  width: 100%; /* tries to fill the container (but container has 10px padding each side) */
-  box-sizing: border-box; /* so any padding/border stays inside that 100% */
-  padding: 8px 0; /* you can adjust top/bottom padding, or add small left/right if you want */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 0;
   background: transparent;
   border: 1px solid #666;
   color: #666;
