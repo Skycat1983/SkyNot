@@ -42,7 +42,6 @@ export const detectDarkTheme = (): boolean => {
   if (centerCol) {
     const centerStyles = window.getComputedStyle(centerCol);
     const centerBg = centerStyles.backgroundColor;
-    console.log("Center column background:", centerBg);
 
     // Parse RGB values to determine if background is dark
     const rgbMatch = centerBg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
@@ -58,7 +57,6 @@ export const detectDarkTheme = (): boolean => {
     hasGoogleDarkClass ||
     centerColDark ||
     (prefersDark && !bodyBgColor.includes("255"));
-  console.log("Final dark theme detection:", isDark);
 
   return isDark;
 };

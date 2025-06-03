@@ -220,7 +220,6 @@
         if (centerCol) {
             const centerStyles = window.getComputedStyle(centerCol);
             const centerBg = centerStyles.backgroundColor;
-            console.log("Center column background:", centerBg);
             // Parse RGB values to determine if background is dark
             const rgbMatch = centerBg.match(/rgb\((\d+),\s*(\d+),\s*(\d+)\)/);
             if (rgbMatch) {
@@ -233,7 +232,6 @@
         const isDark = hasGoogleDarkClass ||
             centerColDark ||
             (prefersDark && !bodyBgColor.includes("255"));
-        console.log("Final dark theme detection:", isDark);
         return isDark;
     };
 
@@ -250,11 +248,9 @@
             // Use browser.runtime.getURL directly (same as CSS injection)
             if ((_a = browser === null || browser === void 0 ? void 0 : browser.runtime) === null || _a === void 0 ? void 0 : _a.getURL) {
                 const url = browser.runtime.getURL(imagePath);
-                console.log(`🖼️ Image URL resolved: ${imagePath} → ${url}`);
                 return url;
             }
             else {
-                console.warn("⚠️ browser.runtime.getURL not available, using direct path");
                 return imagePath;
             }
         }
@@ -336,7 +332,6 @@
     Invoked by: processAIContainer() to create styled quote replacement
     */
     const createQuoteElement = (quote) => {
-        console.log(`🎨 Creating quote with card-two-column layout`);
         return createCard(quote);
     };
     /*
@@ -360,7 +355,6 @@
     */
     const findAIContainer = () => {
         const aiContainer = document.querySelector(AI_CONTAINER_SELECTOR);
-        console.log("AI container search result:", aiContainer);
         return aiContainer;
     };
     /*
@@ -368,7 +362,6 @@
     Invoked by: replaceAIContent() before inserting quote content
     */
     const clearAIContainer = (container) => {
-        console.log("Clearing AI container content");
         container.innerHTML = "";
     };
     /*
@@ -394,7 +387,6 @@
                             const element = node;
                             // Check if this node IS the AI container
                             if (element.matches && element.matches(AI_CONTAINER_SELECTOR)) {
-                                console.log("🎯 AI container appeared (direct match)", element);
                                 observer.disconnect();
                                 callback(element);
                                 return;
@@ -402,7 +394,6 @@
                             // Check if this node CONTAINS the AI container
                             const aiContainer = element.querySelector(AI_CONTAINER_SELECTOR);
                             if (aiContainer) {
-                                console.log("🎯 AI container appeared (nested)");
                                 observer.disconnect();
                                 callback(aiContainer);
                                 return;
@@ -413,7 +404,6 @@
             });
             // Timeout check
             if (Date.now() - startTime > timeout) {
-                console.log("AI container wait timeout reached");
                 observer.disconnect();
             }
         });
@@ -484,10 +474,8 @@
     Invoked by: initContentScript() when container found, or waitForAIContainer() callback
     */
     const processAIContainer = (container) => {
-        console.log("Processing AI container:", container);
         // 1. Get a random quote
         const selectedQuote = getRandomQuote();
-        console.log("Selected quote:", selectedQuote.quote.substring(0, 50) + "...");
         // 2. Create styled quote element
         const quoteElement = createQuoteElement(selectedQuote);
         // 3. Replace AI content with our quote
@@ -503,15 +491,12 @@
     Invoked by: DOMContentLoaded event or immediately if DOM ready
     */
     const initContentScript = () => __awaiter(void 0, void 0, void 0, function* () {
-        console.log("SkyNot initializing...");
         const extensionEnabled = yield isExtensionEnabled();
         if (!extensionEnabled) {
-            console.log("SkyNot is disabled - extension will not modify the page");
             return;
         }
         // Try to find AI container immediately
         const aiContainer = findAIContainer();
-        console.log("AI container in init:", aiContainer);
         if (aiContainer) {
             // Container found immediately
             processAIContainer(aiContainer);
@@ -523,11 +508,9 @@
     });
     // Initialize when DOM is ready
     if (document.readyState === "loading") {
-        console.log("DOM still loading - waiting for DOMContentLoaded");
         document.addEventListener("DOMContentLoaded", initContentScript);
     }
     else {
-        console.log("DOM already loaded - running init immediately");
         initContentScript();
     }
 

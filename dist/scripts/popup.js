@@ -83,7 +83,6 @@
     function initializeButton() {
         return __awaiter(this, void 0, void 0, function* () {
             const settings = yield loadSettings();
-            console.log("Loaded settings:", settings);
             const terminateButton = document.getElementById("terminateButton");
             if (!terminateButton) {
                 console.error("terminateButton not found");
@@ -105,14 +104,12 @@
             };
             updateButtonState(settings.blocking_ai);
             terminateButton.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
-                console.log("terminateButton clicked");
                 const newBlockingState = !settings.blocking_ai;
                 const newSettings = { blocking_ai: newBlockingState };
                 // Update button
                 updateButtonState(newBlockingState);
                 // Save settings
                 yield saveSettings(newSettings);
-                console.log("Settings saved:", newSettings);
                 // Update local settings reference for next click
                 settings.blocking_ai = newBlockingState;
             }));

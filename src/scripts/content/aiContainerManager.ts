@@ -17,7 +17,6 @@ export const findAIContainer = (): HTMLElement | null => {
   const aiContainer = document.querySelector<HTMLElement>(
     AI_CONTAINER_SELECTOR
   );
-  console.log("AI container search result:", aiContainer);
   return aiContainer;
 };
 
@@ -26,7 +25,6 @@ Clears all content from an AI container element.
 Invoked by: replaceAIContent() before inserting quote content
 */
 export const clearAIContainer = (container: HTMLElement): void => {
-  console.log("Clearing AI container content");
   container.innerHTML = "";
 };
 
@@ -62,7 +60,6 @@ export const waitForAIContainer = (
 
             // Check if this node IS the AI container
             if (element.matches && element.matches(AI_CONTAINER_SELECTOR)) {
-              console.log("🎯 AI container appeared (direct match)", element);
               observer.disconnect();
               callback(element as HTMLElement);
               return;
@@ -73,7 +70,6 @@ export const waitForAIContainer = (
               AI_CONTAINER_SELECTOR
             ) as HTMLElement;
             if (aiContainer) {
-              console.log("🎯 AI container appeared (nested)");
               observer.disconnect();
               callback(aiContainer);
               return;
@@ -85,7 +81,6 @@ export const waitForAIContainer = (
 
     // Timeout check
     if (Date.now() - startTime > timeout) {
-      console.log("AI container wait timeout reached");
       observer.disconnect();
     }
   });

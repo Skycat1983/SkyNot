@@ -97,7 +97,6 @@ Main entry point for creating quote elements.
 Invoked by: processAIContainer() to create styled quote replacement
 */
 export const createQuoteElement = (quote: Quote): HTMLDivElement => {
-  console.log(`🎨 Creating quote with card-two-column layout`);
   return createCard(quote);
 };
 

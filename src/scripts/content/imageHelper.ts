@@ -20,12 +20,8 @@ export const getExtensionImageURL = (imagePath: string): string => {
     // Use browser.runtime.getURL directly (same as CSS injection)
     if (browser?.runtime?.getURL) {
       const url = browser.runtime.getURL(imagePath);
-      console.log(`🖼️ Image URL resolved: ${imagePath} → ${url}`);
       return url;
     } else {
-      console.warn(
-        "⚠️ browser.runtime.getURL not available, using direct path"
-      );
       return imagePath;
     }
   } catch (error) {

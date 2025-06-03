@@ -16,7 +16,6 @@ Invoked by: initialise() when popup DOM is ready
 */
 export async function initializeButton(): Promise<void> {
   const settings = await loadSettings();
-  console.log("Loaded settings:", settings);
 
   const terminateButton = document.getElementById(
     "terminateButton"
@@ -44,8 +43,6 @@ export async function initializeButton(): Promise<void> {
   updateButtonState(settings.blocking_ai);
 
   terminateButton.addEventListener("click", async () => {
-    console.log("terminateButton clicked");
-
     const newBlockingState = !settings.blocking_ai;
     const newSettings = { blocking_ai: newBlockingState };
 
@@ -54,7 +51,6 @@ export async function initializeButton(): Promise<void> {
 
     // Save settings
     await saveSettings(newSettings);
-    console.log("Settings saved:", newSettings);
 
     // Update local settings reference for next click
     settings.blocking_ai = newBlockingState;
