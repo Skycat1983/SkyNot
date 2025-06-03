@@ -1,13 +1,26 @@
-// Function to detect if Google is using dark theme
+// ──────────────────────────────────────────────────────────────────────────
+// Google Theme Detection System
+// ──────────────────────────────────────────────────────────────────────────
+
+/*
+Detects whether Google is using light or dark theme to adapt quote styling.
+Uses multiple detection methods: CSS classes, background colors, and system preferences.
+Ensures quote cards match Google's current theme 
+*/
+
+/*
+Analyzes page elements to determine if Google is in dark mode.
+Invoked by: createCard() to set appropriate colors for quotes
+*/
 export const detectDarkTheme = (): boolean => {
-  // Method 1: Check system preference
+  // Check system preference
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  // Method 2: Check Google's body background color
+  // Check Google's body background color
   const bodyStyles = window.getComputedStyle(document.body);
   const bodyBgColor = bodyStyles.backgroundColor;
 
-  // Method 3: Check if Google has dark theme classes/attributes
+  // Check if Google has dark theme classes/attributes
   const htmlElement = document.documentElement;
   const bodyElement = document.body;
 
@@ -17,14 +30,13 @@ export const detectDarkTheme = (): boolean => {
     bodyElement.classList.contains("srp-dark"),
     bodyElement.classList.contains("dark"),
     htmlElement.classList.contains("dark"),
-    // Check if any parent has dark theme class
     document.querySelector('[data-dark="true"]') !== null,
     document.querySelector(".dark") !== null,
   ];
 
   const hasGoogleDarkClass = darkModeIndicators.some((indicator) => indicator);
 
-  // Method 4: Check center column background color as fallback
+  // Check center column background color as fallback
   const centerCol = document.getElementById("center_col");
   let centerColDark = false;
   if (centerCol) {

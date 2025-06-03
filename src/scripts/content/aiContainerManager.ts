@@ -1,5 +1,18 @@
+// ──────────────────────────────────────────────────────────────────────────
+// AI Container Detection and Management
+// ──────────────────────────────────────────────────────────────────────────
+
+/*
+Handles finding, clearing, and replacing Google's AI content containers.
+Uses DOM selectors and mutation observers to detect dynamic AI content.
+*/
+
 import { AI_CONTAINER_SELECTOR } from "./constants";
 
+/*
+Searches for existing AI container in the current DOM.
+Invoked by: initContentScript() to check for immediate AI content
+*/
 export const findAIContainer = (): HTMLElement | null => {
   const aiContainer = document.querySelector<HTMLElement>(
     AI_CONTAINER_SELECTOR
@@ -8,28 +21,36 @@ export const findAIContainer = (): HTMLElement | null => {
   return aiContainer;
 };
 
+/*
+Clears all content from an AI container element.
+Invoked by: replaceAIContent() before inserting quote content
+*/
 export const clearAIContainer = (container: HTMLElement): void => {
   console.log("Clearing AI container content");
   container.innerHTML = "";
 };
 
+/*
+Replaces AI container content with Terminator quote element.
+Invoked by: processAIContainer() to swap AI content for quotes
+*/
 export const replaceAIContent = (
   container: HTMLElement,
   newContent: HTMLElement
 ): void => {
   clearAIContainer(container);
   container.appendChild(newContent);
-  console.log("AI content replaced with custom content");
 };
 
+/*
+Sets up mutation observer to watch for dynamically loaded AI containers.
+This is necessary because the AI container is loaded asynchronously.
+Invoked by: initContentScript() when no immediate AI container found
+*/
 export const waitForAIContainer = (
   callback: (container: HTMLElement) => void,
   timeout: number = 10000
 ): void => {
-  console.log("WAITING FOR AI CONTAINER TO APPEAR...");
-  console.log("WAITING FOR AI CONTAINER TO APPEAR...");
-  console.log("WAITING FOR AI CONTAINER TO APPEAR...");
-
   const startTime = Date.now();
 
   const observer = new MutationObserver((mutations) => {

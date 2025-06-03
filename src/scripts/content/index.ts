@@ -1,3 +1,12 @@
+// ──────────────────────────────────────────────────────────────────────────
+// Main Content Script Entry Point
+// ──────────────────────────────────────────────────────────────────────────
+
+/*
+Main entry point for the SkyNot content script that runs on Google pages.
+Initializes the extension, checks settings, and replaces AI content with quotes.
+*/
+
 import { getRandomQuote } from "./quoteSelector";
 import { createQuoteElement, getQuoteTextElement } from "./domBuilder";
 import {
@@ -6,9 +15,12 @@ import {
   waitForAIContainer,
 } from "./aiContainerManager";
 import { typeText } from "./typeText";
-import { testExtensionAPI } from "./imageHelper";
 import { isExtensionEnabled } from "./settings";
 
+/*
+Processes found AI container by replacing content with Terminator quote.
+Invoked by: initContentScript() when container found, or waitForAIContainer() callback
+*/
 const processAIContainer = (container: HTMLElement): void => {
   console.log("Processing AI container:", container);
 
@@ -29,20 +41,18 @@ const processAIContainer = (container: HTMLElement): void => {
   }
 };
 
-const init = async (): Promise<void> => {
+/*
+Main initialization function that checks settings and starts extension.
+Invoked by: DOMContentLoaded event or immediately if DOM ready
+*/
+const initContentScript = async (): Promise<void> => {
   console.log("SkyNot initializing...");
 
-  // Check if extension is enabled - single check at entry point
   const extensionEnabled = await isExtensionEnabled();
   if (!extensionEnabled) {
     console.log("SkyNot is disabled - extension will not modify the page");
     return;
   }
-
-  console.log("SkyNot is enabled - proceeding with initialization");
-
-  // Test extension API availability
-  testExtensionAPI();
 
   // Try to find AI container immediately
   const aiContainer = findAIContainer();
@@ -60,8 +70,8 @@ const init = async (): Promise<void> => {
 // Initialize when DOM is ready
 if (document.readyState === "loading") {
   console.log("DOM still loading - waiting for DOMContentLoaded");
-  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", initContentScript);
 } else {
   console.log("DOM already loaded - running init immediately");
-  init();
+  initContentScript();
 }

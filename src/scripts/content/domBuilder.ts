@@ -1,3 +1,13 @@
+// ──────────────────────────────────────────────────────────────────────────
+// Quote Card DOM Builder
+// ──────────────────────────────────────────────────────────────────────────
+
+/*
+Creates styled HTML elements for displaying Terminator quotes.
+Uses card-two-column layout with avatar on left and quote/author on right.
+Adapts styling based on light/dark theme detection.
+*/
+
 import { Quote } from "./quoteSelector";
 import { detectDarkTheme } from "./themeCheck";
 import { getExtensionImageURL } from "./imageHelper";
@@ -6,6 +16,10 @@ export interface LayoutConfig {
   variant: "card-two-column";
 }
 
+/*
+Creates a styled card element containing quote, author, and avatar.
+Invoked by: createQuoteElement() to build the visual quote representation
+*/
 export const createCard = (quote: Quote): HTMLDivElement => {
   const isDarkTheme = detectDarkTheme();
   const textColor = isDarkTheme ? "#ffffff" : "#222222";
@@ -78,11 +92,19 @@ export const createCard = (quote: Quote): HTMLDivElement => {
   return wrapper;
 };
 
+/*
+Main entry point for creating quote elements.
+Invoked by: processAIContainer() to create styled quote replacement
+*/
 export const createQuoteElement = (quote: Quote): HTMLDivElement => {
   console.log(`🎨 Creating quote with card-two-column layout`);
   return createCard(quote);
 };
 
+/*
+Extracts the quote text element for typing animation.
+Invoked by: processAIContainer() to get element for typeText animation
+*/
 export const getQuoteTextElement = (
   wrapper: HTMLDivElement
 ): HTMLDivElement | null => {

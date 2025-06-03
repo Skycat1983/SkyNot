@@ -1,15 +1,20 @@
-// =============================================================================
-// IMAGE URL HELPER
-// =============================================================================
+// ──────────────────────────────────────────────────────────────────────────
+// Extension Image URL Helper
+// ──────────────────────────────────────────────────────────────────────────
 
 /*
-Get proper extension URLs for images, similar to how CSS injection works.
-This uses browser.runtime.getURL() which should be available in content scripts.
+Provides proper image URL resolution for extension assets.
+Solves problem of images not loading in the extension due to the relative path.
+Uses browser.runtime.getURL() to convert relative paths to extension URLs.
+Handles fallbacks for environments where browser API isn't available.
 */
 
-// Declare browser as global (it's provided by Firefox)
 declare const browser: any;
 
+/*
+Converts relative image paths to proper extension URLs.
+Invoked by: createCard() when setting avatar src attribute
+*/
 export const getExtensionImageURL = (imagePath: string): string => {
   try {
     // Use browser.runtime.getURL directly (same as CSS injection)
@@ -26,28 +31,5 @@ export const getExtensionImageURL = (imagePath: string): string => {
   } catch (error) {
     console.error("❌ Failed to get extension image URL:", error);
     return imagePath;
-  }
-};
-
-// Test function to verify extension API is working
-export const testExtensionAPI = (): void => {
-  console.log("🔍 Testing extension API availability:");
-
-  try {
-    console.log("browser available:", typeof browser);
-    console.log("browser.runtime available:", !!browser?.runtime);
-    console.log(
-      "browser.runtime.getURL available:",
-      typeof browser?.runtime?.getURL
-    );
-
-    if (browser?.runtime?.getURL) {
-      const testUrl = browser.runtime.getURL("test.png");
-      console.log("✅ Extension API working, test URL:", testUrl);
-    } else {
-      console.log("❌ Extension API not available");
-    }
-  } catch (error) {
-    console.error("❌ Error testing extension API:", error);
   }
 };

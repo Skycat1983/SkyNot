@@ -1,10 +1,20 @@
 // ──────────────────────────────────────────────────────────────────────────
-// Stable attribute‐name constants for targeting the AI‐overview container
+// Extension Constants and Terminator Quotes
 // ──────────────────────────────────────────────────────────────────────────
+
+/*
+Contains all static data for the SkyNot extension:
+- AI container CSS selectors for targeting Google's AI content
+- Terminator movie quotes with character avatars
+- Image paths for character portraits used in quote cards
+*/
+
+// AI container targeting constants
 export const AI_CONTAINER_ATTRIBUTE = "data-subtree";
 export const AI_ATTRIBUTE_VALUE = "mfc";
 export const AI_CONTAINER_SELECTOR = `[${AI_CONTAINER_ATTRIBUTE}="${AI_ATTRIBUTE_VALUE}"]`;
 
+// Character avatar image paths
 const grace = "../../src/assets/images/grace.png";
 const john_connor = "../../src/assets/images/john_connor.png";
 const kate_brewster = "../../src/assets/images/kate_brewster.png";
@@ -12,6 +22,7 @@ const kyle_reese = "../../src/assets/images/kyle_reese.png";
 const sarah_connor = "../../src/assets/images/sarah_connor.png";
 const t_800 = "../../src/assets/images/t-800.png";
 
+//  Terminator quotes with character attribution
 export const quotes = [
   {
     quote: "I'll be back.",
