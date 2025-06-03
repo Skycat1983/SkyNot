@@ -1,19 +1,27 @@
 type SkyNotSettings = {
-  disabled_ai: boolean;
+  blocking_ai: boolean;
 };
 
 const defaultSettings: SkyNotSettings = {
-  disabled_ai: false,
+  blocking_ai: false,
 };
 
-export const loadSettings = () => {
-  const settings = localStorage.getItem("skynot_settings");
-  if (settings) {
-    return JSON.parse(settings);
+export const loadSettings = async (): Promise<SkyNotSettings> => {
+  try {
+    const result = await browser.storage.local.get("skynot_settings");
+    if (result.skynot_settings) {
+      return result.skynot_settings as SkyNotSettings;
+    }
+  } catch (error) {
+    console.error("Failed to load SkyNot settings:", error);
   }
   return defaultSettings;
 };
 
-export const saveSettings = (settings: SkyNotSettings) => {
-  localStorage.setItem("skynot_settings", JSON.stringify(settings));
+export const saveSettings = async (settings: SkyNotSettings): Promise<void> => {
+  try {
+    await browser.storage.local.set({ skynot_settings: settings });
+  } catch (error) {
+    console.error("Failed to save SkyNot settings:", error);
+  }
 };
