@@ -1,6 +1,10 @@
 # SkyNot - Terminate Google's AI Overviews
 
+<!-- https://addons.mozilla.org/en-GB/firefox/addon/skynot/ -->
+
 ![SkyNot Logo](src/assets/screenshots/logo.png)
+
+[![Install SkyNot](https://img.shields.io/badge/Firefox%20Add--on-Install-FF7139?logo=firefox&logoColor=white)](https://addons.mozilla.org/en-GB/firefox/addon/skynot/)
 
 **SkyNot** is a Firefox extension that replaces Google's annoying AI-generated content with quotes from the Terminator movies.
 
