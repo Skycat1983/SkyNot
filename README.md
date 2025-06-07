@@ -27,9 +27,16 @@ SkyNot automatically intercepts content being added to Google's 'AI Overview' co
 
 ## 🛠 Installation
 
-### For Users
+### Recommended Method
 
-1. Download the latest release from the [Releases page](https://github.com/Skycat1983/SkyNot/releases)
+**Install from Firefox Add-ons Store** (easiest):
+Click the badge above or visit: [Firefox Add-ons - SkyNot](https://addons.mozilla.org/en-GB/firefox/addon/skynot/)
+
+### Alternative Methods
+
+**Manual Installation** (for specific versions or if store is unavailable):
+
+1. Download the latest `.xpi` file from the [Releases page](https://github.com/Skycat1983/SkyNot/releases)
 2. Open Firefox and navigate to `about:addons`
 3. Click the gear icon and select "Install Add-on From File"
 4. Choose the downloaded `.xpi` file
